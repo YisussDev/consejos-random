@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: arial;
+}
+body{
+  background-color: rgb(40, 38, 49);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contenedor-consejos{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border-radius: 10px;
+  margin:100px auto;
+  width: 450px;
+  height: 450px;
+  background-color: rgb(57, 69, 80); 
+}
+.contenedor-consejos h2 {
+  display: block;
+  text-align: center;
+  width: 450px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 20px;
+  color: rgb(56, 255, 105);
+}
+.contenedor-texto{
+  display: block;
+  text-align: center;
+  word-wrap: break-word;
+  margin: auto;
+  width: 400px;
+  height: 270px;
+  font-size: 20px;
+  font-weight: bold;
   color: white;
-}
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mensajeBoton img{
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+.mensajeBoton{
+  display: flex;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color:rgb(56, 255, 105);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+  top: 30px;
+}
+.mensajeBoton:hover{
+  box-shadow: 0px 0px 20px rgb(56, 255, 105);
+}
+.mensajeBoton:active{
+  transform: translateY(10%);
 }
