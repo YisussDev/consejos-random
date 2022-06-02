@@ -6,7 +6,7 @@ export default function CajaTexto({texto, id}){
     return(
        <div>
           <h2> ADVICE #{id} </h2>
-        <div className='contenedor-texto'>
+        <div className='contenedor-texto' id="contenedorT">
             "{texto}"
         </div> 
        </div>
