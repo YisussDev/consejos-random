@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../App.css'
 import divisor from '../images/divisor.svg'
 import random from '../images/random.svg'
@@ -6,64 +6,51 @@ import '../App.css';
 import CajaTexto from "./cajatexto";
 
 export default function Generador(){
+  useEffect(()=>{
+    fetch('https://api.adviceslip.com/advice')
+    .then(res => res.json())  
+    .then(res2 =>setMensaje(res2))
+    .catch(err => console.log(err))
+  },[])
 
+    const [mostrarMensaje, setMostrarMensaje]=useState(false);
+    const [mensaje, setMensaje]=useState(false);
+    const [preloader, setPreloader]=useState(true);
 
-    const inicioPl = () =>{
-      let ct=document.getElementById('contenedorT');
-      ct.style='display: none';
-      let pl=document.getElementById('preloader');
-      pl.style='display:block';
+    setTimeout(() => {
+      setPreloader(false)
+      setMostrarMensaje(true)
+    }, 2000);
 
-    }
-    const finPl = () =>{
-      let ct=document.getElementById('contenedorT');
-      ct.style='display: block';
-      let pl=document.getElementById('preloader');
-      pl.style='display: none';
-    }
-    const [mensaje, setMensaje]=useState({slip: { id: 1, advice: "Remember that spiders are more afraid of you, than you are of them."}});
-
-    const manejarMensajes = async (e) => {
-       
     
-        try{
-
-          inicioPl();
-        
-          
-          let url=`https://api.adviceslip.com/advice`;
-        let datos= await fetch(url, {
-            "method": 'GET'
-        });
-        let dato = await datos.json();
-        setMensaje(dato);
-
-        finPl();
-        
+    const manejarMensajes = () => {
+      fetch('https://api.adviceslip.com/advice')
+    .then(res => res.json())  
+    .then(res2 =>{
+      setMostrarMensaje(false);
+      setPreloader(true);
+      setMensaje(res2)})
+    .catch(err => console.log(err))
     }
-    catch(err){}
-   
-}
-
-
-
-        
-
     return(
       <>
       <div className='contenedor-consejos'>
-        <div id='preloader'></div>
-         {mensaje ? (<CajaTexto
+         {preloader ? (<div id="preloader"></div>)
+         :(null)}
+         {mostrarMensaje ? (<CajaTexto
          id={mensaje.slip.id}
          texto={mensaje.slip.advice}
-         />)
-         :null
-         }
+          />)
+         :(null)}
           
         <img src={divisor} alt='divisor' id="divisor"/>
-        <button onClick={manejarMensajes} className='mensajeBoton'>
+        <button onClick={ manejarMensajes } className='mensajeBoton'>
         <img src={random} alt='random' /></button>
       </div>
       </>
     );
 }
+
+
+git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
